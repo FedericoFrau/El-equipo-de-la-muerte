@@ -50,3 +50,40 @@ function buscarProducto(producto){
 	console.log(productosBuscados)
 }
 buscarProducto(producto);
+
+function mostrarProductos() {
+    console.log('---- Productos Actuales ----');
+    productos.forEach(producto => {
+        console.log(`ID: ${producto.id}, Nombre: ${producto.nombre}, Descripción: ${producto.descripcion}, Precio: ${producto.precio}`);
+    });
+    console.log('-----------------------------');
+}
+
+function agregarNuevoProducto() {
+    let continuar = true;
+    
+    while (continuar) {
+        let id = parseInt(prompt('Ingresa el ID del nuevo producto'))
+        let nombre = prompt('Ingresa el nombre del nuevo producto')
+        let descripcion = prompt('Ingresa la descripción del nuevo producto')
+        let precio = parseFloat(prompt('Ingresa el precio del nuevo producto'))
+
+        let nuevoProducto = {
+            id: id,
+            nombre: nombre,
+            descripcion: descripcion,
+            precio: precio
+        }
+
+        productos.push(nuevoProducto)
+        console.log('Nuevo producto agregado:', nuevoProducto)
+
+        let respuesta = prompt('¿Quieres agregar otro producto? (Sí/No)').toLowerCase()
+        if (respuesta !== 'sí' && respuesta !== 'si') {
+            continuar = false;
+        }
+    }
+}
+
+mostrarProductos();
+agregarNuevoProducto();
