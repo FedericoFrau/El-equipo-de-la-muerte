@@ -1,3 +1,4 @@
+
 let productos = [
 	{
 		id: 1,
@@ -35,3 +36,4 @@ function eliminarProducto(id) {
 		console.log(productos)
 	}
 }
+
