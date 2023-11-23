@@ -1,4 +1,3 @@
-
 let productos = [
 	{
 		id: 1,
@@ -37,3 +36,17 @@ function eliminarProducto(id) {
 	}
 }
 
+
+const producto = ['Computadora', 'Laptop', 'Celular'];
+let carrito = [];
+
+function buscarProducto(producto){
+    for(i=0;i<carrito.length;i++) {
+        producto.toLowerCase();
+        if(producto == carrito[i]) {
+            productosBuscados.push(producto)
+        }
+    }
+	console.log(productosBuscados)
+}
+buscarProducto(producto);
