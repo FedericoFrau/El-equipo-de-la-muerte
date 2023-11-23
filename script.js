@@ -36,7 +36,6 @@ function eliminarProducto(id) {
 	}
 }
 
-
 const producto = ['Computadora', 'Laptop', 'Celular'];
 let carrito = [];
 
@@ -87,3 +86,11 @@ function agregarNuevoProducto() {
 
 mostrarProductos();
 agregarNuevoProducto();
+
+function listarProductos(producto){
+	for (let indice = 0; indice < producto.length; indice++) {
+		console.log(`Nombre: ${producto[indice].nombre} | Producto: ${producto[indice].descripcion}  | Precio: $${producto[indice].precio}`);
+	}
+}
+
+listarProductos(producto);
