@@ -28,6 +28,20 @@ btnBuscarProducto.addEventListener("click", ()=>{
 
 const btnBuscarProductoResultado = document.getElementById("buscarProductoResultado")
 
+btnEliminarProducto.addEventListener('click', () => {
+	let id = parseInt(prompt('Ingresa el ID del producto'))
+	eliminarProducto(id)
+})
+function eliminarProducto(id) {
+	let index = productos.findIndex((producto) => producto.id === id)
+	if (index === -1) {
+		alert('No se encontro el producto')
+		return
+	} else {
+		productos = productos.filter((producto) => producto.id !== id)
+		console.log(productos)
+	}
+}
 
 
 function buscarProducto(producABuscar){
