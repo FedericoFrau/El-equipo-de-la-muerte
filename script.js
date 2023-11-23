@@ -37,3 +37,10 @@ function eliminarProducto(id) {
 	}
 }
 
+function listarProductos(producto){
+	for (let indice = 0; indice < producto.length; indice++) {
+		console.log(`Nombre: ${producto[indice].nombre} | Producto: ${producto[indice].descripcion}  | Precio: $${producto[indice].precio}`);
+	}
+}
+
+listarProductos(producto);
