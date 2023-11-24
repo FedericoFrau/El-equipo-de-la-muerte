@@ -56,7 +56,8 @@ function buscarProducto(producABuscar){
 			btnBuscarProductoResultado.textContent = `Producto no encontrado `
 			return
 		}
-
+    }
+}
 
 function mostrarProductos() {
     console.log('---- Productos Actuales ----');
