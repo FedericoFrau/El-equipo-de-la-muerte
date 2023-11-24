@@ -16,6 +16,18 @@ let productos = [
 		nombre: 'Celular',
 		descripcion: 'Celular Samsung',
 		precio: 60000,
+	},
+    {
+		id: 4,
+		nombre: 'Laptop negra',
+		descripcion: 'De la muerte',
+		precio: 160000,
+	},
+    {
+		id: 5,
+		nombre: 'Entradas para BOCA JUNIORS',
+		descripcion: 'El mejor equipo del planeta',
+		precio: 16000000,
 	}
 ]
 
@@ -86,7 +98,7 @@ function agregarNuevoProducto() {
         productos.push(nuevoProducto)
         console.log('Nuevo producto agregado:', nuevoProducto)
 
-        let respuesta = prompt('¿Quieres agregar otro producto? (Sí/No)').toLowerCase()
+        let respuesta = prompt('¿Quieres agregar otro producto? (Sí/No)').toLowerCase();
         if (respuesta !== 'sí' && respuesta !== 'si') {
             continuar = false;
         }
@@ -102,17 +114,26 @@ function listarProductos(producto){
 	}
 }
 
-listarProductos(producto);
+listarProductos(productos);
 
+let btnFiltrarProducto = document.getElementById(`filtrarProducto`);
+let filtrarProductoResultado = document.getElementById(`filtrarProductoResultado`)
+btnFiltrarProducto.addEventListener("click", () => {
+    wordFilter();
+});
+let wordFilter = () => {
+    let searchingWord = prompt(`Por favor introduzca el nombre del producto:`).toLowerCase();    
+    let productAmount = productos.length;
+    let filterOutcome = [];
+    for (ii=0; ii<= productAmount-1; ii++) {
+        
+        if ((productos[ii].nombre.toLowerCase().includes(searchingWord)) || (productos[ii].descripcion.toLowerCase().includes(searchingWord))) {
+            filterOutcome.push(productos[ii]);
 
-let searchingWord = prompt(`Por favor introduzca el nombre del producto:`)
-let productAmount = productos.length;
-let filterOutcome = [];
-for (ii=0; ii<= productAmount-1; ii++) {
-    // console.log((productos[ii]).nombre);
-    if ((productos[ii]).nombre.toUpperCase() == searchingWord.toUpperCase()) {
-        filterOutcome.push(productos[ii]);
+        }
     }
+    if (filterOutcome.length<1) {
+        filtrarProductoResultado.innerHTML= `No se encontraron coincidencias...`;
+    }
+    filterOutcome.forEach((item) => filtrarProductoResultado.innerHTML= `Nombre: ${item.nombre}, <br> Descripción: ${item.descripcion}`);
 }
-console.log(filterOutcome);
-document.write(`<hr> ${filterOutcome} <hr>`);
