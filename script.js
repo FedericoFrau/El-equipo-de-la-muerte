@@ -43,7 +43,6 @@ function eliminarProducto(id) {
 	}
 }
 
-
 function buscarProducto(producABuscar){
     for(i=0;i<productos.length;i++) {
         let busqueda = producABuscar.toLowerCase();
@@ -57,9 +56,62 @@ function buscarProducto(producABuscar){
 			btnBuscarProductoResultado.textContent = `Producto no encontrado `
 			return
 		}
-    }
-	
+
+
+function mostrarProductos() {
+    console.log('---- Productos Actuales ----');
+    productos.forEach(producto => {
+        console.log(`ID: ${producto.id}, Nombre: ${producto.nombre}, Descripción: ${producto.descripcion}, Precio: ${producto.precio}`);
+    });
+    console.log('-----------------------------');
 }
 
+function agregarNuevoProducto() {
+    let continuar = true;
+    
+    while (continuar) {
+        let id = parseInt(prompt('Ingresa el ID del nuevo producto'))
+        let nombre = prompt('Ingresa el nombre del nuevo producto')
+        let descripcion = prompt('Ingresa la descripción del nuevo producto')
+        let precio = parseFloat(prompt('Ingresa el precio del nuevo producto'))
+
+        let nuevoProducto = {
+            id: id,
+            nombre: nombre,
+            descripcion: descripcion,
+            precio: precio
+        }
+
+        productos.push(nuevoProducto)
+        console.log('Nuevo producto agregado:', nuevoProducto)
+
+        let respuesta = prompt('¿Quieres agregar otro producto? (Sí/No)').toLowerCase()
+        if (respuesta !== 'sí' && respuesta !== 'si') {
+            continuar = false;
+        }
+    }
+}
+
+mostrarProductos();
+agregarNuevoProducto();
+
+function listarProductos(producto){
+	for (let indice = 0; indice < producto.length; indice++) {
+		console.log(`Nombre: ${producto[indice].nombre} | Producto: ${producto[indice].descripcion}  | Precio: $${producto[indice].precio}`);
+	}
+}
+
+listarProductos(producto);
 
 
+let searchingWord = prompt(`Por favor introduzca el nombre del producto:`)
+let productAmount = productos.length;
+let filterOutcome = [];
+for (ii=0; ii<= productAmount-1; ii++) {
+    // console.log((productos[ii]).nombre);
+    if ((productos[ii]).nombre.toUpperCase() == searchingWord.toUpperCase()) {
+        filterOutcome.push(productos[ii]);
+    }
+}
+console.log(filterOutcome);
+document.write(`<hr> ${filterOutcome} <hr>`);
