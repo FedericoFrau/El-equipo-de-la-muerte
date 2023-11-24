@@ -94,3 +94,16 @@ function listarProductos(producto){
 }
 
 listarProductos(producto);
+
+
+let searchingWord = prompt(`Por favor introduzca el nombre del producto:`)
+let productAmount = productos.length;
+let filterOutcome = [];
+for (ii=0; ii<= productAmount-1; ii++) {
+    // console.log((productos[ii]).nombre);
+    if ((productos[ii]).nombre.toUpperCase() == searchingWord.toUpperCase()) {
+        filterOutcome.push(productos[ii]);
+    }
+}
+console.log(filterOutcome);
+document.write(`<hr> ${filterOutcome} <hr>`);
