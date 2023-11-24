@@ -16,10 +16,17 @@ let productos = [
 		nombre: 'Celular',
 		descripcion: 'Celular Samsung',
 		precio: 60000,
-	},
+	}
 ]
 
-const btnEliminarProducto = document.getElementById('btnEliminarProducto')
+const btnBuscarProducto = document.getElementById("buscarProducto")
+btnBuscarProducto.addEventListener("click", ()=>{
+	let producABuscar = prompt("Ingrese el producto a buscar")
+	buscarProducto(producABuscar);
+
+})
+
+const btnBuscarProductoResultado = document.getElementById("buscarProductoResultado")
 
 btnEliminarProducto.addEventListener('click', () => {
 	let id = parseInt(prompt('Ingresa el ID del producto'))
@@ -36,19 +43,20 @@ function eliminarProducto(id) {
 	}
 }
 
-const producto = ['Computadora', 'Laptop', 'Celular'];
-let carrito = [];
+function buscarProducto(producABuscar){
+    for(i=0;i<productos.length;i++) {
+        let busqueda = producABuscar.toLowerCase();
+		let resultado = productos[i].nombre.toLowerCase()
+		
+        if(busqueda == resultado) {
+			btnBuscarProductoResultado.textContent = `El resultado es: ${productos[i].nombre}, 
+			${productos[i].descripcion}, ${productos[i].precio} `
+			return productos[i]
+        }else{
+			btnBuscarProductoResultado.textContent = `Producto no encontrado `
+			return
+		}
 
-function buscarProducto(producto){
-    for(i=0;i<carrito.length;i++) {
-        producto.toLowerCase();
-        if(producto == carrito[i]) {
-            productosBuscados.push(producto)
-        }
-    }
-	console.log(productosBuscados)
-}
-buscarProducto(producto);
 
 function mostrarProductos() {
     console.log('---- Productos Actuales ----');
