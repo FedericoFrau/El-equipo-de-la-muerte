@@ -31,50 +31,55 @@ let productos = [
 	}
 ]
 
-const btnBuscarProducto = document.getElementById("buscarProducto")
+const btnBuscarProducto = document.getElementById("buscarProducto");
+const btnBuscarProductoResultado = document.getElementById("buscarProductoResultado");
 btnBuscarProducto.addEventListener("click", ()=>{
-	let producABuscar = prompt("Ingrese el producto a buscar")
+	let producABuscar = prompt("Ingrese el producto a buscar");
 	buscarProducto(producABuscar);
 
 })
 
-const btnBuscarProductoResultado = document.getElementById("buscarProductoResultado")
-
-btnEliminarProducto.addEventListener('click', () => {
-	let id = parseInt(prompt('Ingresa el ID del producto'))
-	eliminarProducto(id)
-})
-function eliminarProducto(id) {
-	let index = productos.findIndex((producto) => producto.id === id)
-	if (index === -1) {
-		alert('No se encontro el producto')
-		return
-	} else {
-		productos = productos.filter((producto) => producto.id !== id)
-		console.log(productos)
-	}
-}
-
 function buscarProducto(producABuscar){
     for(i=0;i<productos.length;i++) {
         let busqueda = producABuscar.toLowerCase();
-		let resultado = productos[i].nombre.toLowerCase()
+		let resultado = productos[i].nombre.toLowerCase();
 		
         if(busqueda == resultado) {
 			btnBuscarProductoResultado.textContent = `El resultado es: ${productos[i].nombre}, 
 			${productos[i].descripcion}, ${productos[i].precio} `
 			return productos[i]
         }else{
-			btnBuscarProductoResultado.textContent = `Producto no encontrado `
-			return
+			btnBuscarProductoResultado.textContent = `Producto no encontrado`;
+			return;
 		}
     }
 }
+const btnEliminarProducto = document.getElementById(`btnEliminarProducto`);
+btnEliminarProducto.addEventListener('click', () => {
+	let id = parseInt(prompt('Ingresa el ID del producto'));
+	eliminarProducto(id);
+})
+function eliminarProducto(id) {
+	let index = productos.findIndex((producto) => producto.id === id);
+	if (index === -1) {
+		alert('No se encontró el producto');
+		return
+	} else {
+		productos = productos.filter((producto) => producto.id !== id);
+		console.log(productos);
+	}
+}
+
+const btnMostrarProductos = document.getElementById(`btnMostrarProductos`);
+btnMostrarProductos.addEventListener(`click`, () => {
+    mostrarProductos();
+})
+const mostrarProductoResultado = document.getElementById(`mostrarProductoResultado`);
 
 function mostrarProductos() {
     console.log('---- Productos Actuales ----');
     productos.forEach(producto => {
-        console.log(`ID: ${producto.id}, Nombre: ${producto.nombre}, Descripción: ${producto.descripcion}, Precio: ${producto.precio}`);
+        mostrarProductoResultado.innerHTML = `ID: ${producto.id} <br> Nombre: ${producto.nombre} <br> Descripción: ${producto.descripcion} <br> Precio: ${producto.precio}`;
     });
     console.log('-----------------------------');
 }
@@ -104,17 +109,8 @@ function agregarNuevoProducto() {
         }
     }
 }
+// agregarNuevoProducto();
 
-mostrarProductos();
-agregarNuevoProducto();
-
-function listarProductos(producto){
-	for (let indice = 0; indice < producto.length; indice++) {
-		console.log(`Nombre: ${producto[indice].nombre} | Producto: ${producto[indice].descripcion}  | Precio: $${producto[indice].precio}`);
-	}
-}
-
-listarProductos(productos);
 
 let btnFiltrarProducto = document.getElementById(`filtrarProducto`);
 let filtrarProductoResultado = document.getElementById(`filtrarProductoResultado`)
