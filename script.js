@@ -112,7 +112,7 @@ function agregarNuevoProducto() {
 // agregarNuevoProducto();
 
 
-let btnFiltrarProducto = document.getElementById(`filtrarProducto`);
+let btnFiltrarProducto = document.getElementById(`btnFiltrarProducto`);
 let filtrarProductoResultado = document.getElementById(`filtrarProductoResultado`)
 btnFiltrarProducto.addEventListener("click", () => {
     wordFilter();
@@ -131,5 +131,10 @@ let wordFilter = () => {
     if (filterOutcome.length<1) {
         filtrarProductoResultado.innerHTML= `No se encontraron coincidencias...`;
     }
-    filterOutcome.forEach((item) => filtrarProductoResultado.innerHTML= `Nombre: ${item.nombre}, <br> Descripción: ${item.descripcion}`);
+	console.log(filterOutcome);
+    // filterOutcome.forEach((item) => filtrarProductoResultado.innerHTML= `Nombre: ${item.nombre}, <br> Descripción: ${item.descripcion}`);
+	// filterOutcome.forEach((item) => filtrarProductoResultado.insertAdjacentHTML(`beforeend`, `<hr> Nombre: ${item.nombre}, <br> Descripción: ${item.descripcion}<hr>`));
+	filtrarProductoResultado.innerHTML= "";
+	filterOutcome.forEach((item) => filtrarProductoResultado.insertAdjacentHTML(`beforeend`, `Nombre: ${item.nombre}, <br> Descripción: ${item.descripcion}<br><br>`));
+	// filterOutcome.forEach((item) => document.write(`pepita la pistolera <br>`))
 }
